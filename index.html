@@ -92,6 +92,45 @@ h2{
   min-height:160px;
 }
 
+.gift-section{
+  margin:25px 0;
+}
+
+.gift-box{
+  font-size:5rem;
+  cursor:pointer;
+  animation:bounce 2s infinite;
+  display:inline-block;
+  transition:0.4s;
+}
+
+.gift-box:hover{
+  transform:scale(1.2) rotate(10deg);
+}
+
+.teddy{
+  font-size:4rem;
+  margin-top:10px;
+  animation: teddyDance 3s infinite;
+}
+
+.cute-emojis{
+  margin-top:15px;
+  font-size:1.8rem;
+  letter-spacing:8px;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+
+@keyframes teddyDance{
+  0%{transform:rotate(-5deg);}
+  50%{transform:rotate(5deg);}
+  100%{transform:rotate(-5deg);}
+}
+
 .btns{
   margin-top:35px;
   display:flex;
@@ -233,6 +272,12 @@ button:hover{
 
     <div class="typing" id="typing"></div>
 
+    <div class="gift-section">
+      <div class="gift-box" onclick="openGift()">🎁</div>
+      <div class="teddy">🧸</div>
+      <div class="cute-emojis">💖 ✨ 🌸 🥰 💕 🎂 👑</div>
+    </div>
+
     <div class="btns">
       <button onclick="showLove()">Open My Heart 💌</button>
       <button onclick="surprise()">Birthday Surprise 🎁</button>
@@ -269,6 +314,10 @@ typingEffect();
 
 function showLove(){
   document.getElementById('message').style.display='block';
+}
+
+function openGift(){
+  alert('🎁 Surprise! Endless Love, Hugs, and Kisses For You ❤️🧸✨');
 }
 
 function surprise(){
@@ -350,6 +399,17 @@ function animate(){
 }
 
 animate();
+</script>
+
+<audio id="birthdaySong" autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<script>
+window.addEventListener('click',()=>{
+  const music=document.getElementById('birthdaySong');
+  music.play();
+});
 </script>
 
 </body>
