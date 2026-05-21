@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  overflow:hidden;
+  background:black;
+  font-family:'Poppins',sans-serif;
+  color:white;
+}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-2;
+}
+
+.stars{
+  position:absolute;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+  0%,100%{opacity:0.2;}
+  50%{opacity:1;}
+}
+
+.container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.card{
+  width:90%;
+  max-width:900px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  backdrop-filter:blur(20px);
+  border-radius:30px;
+  padding:50px;
+  box-shadow:0 0 50px rgba(255,105,180,0.4);
+  animation: fadeIn 2s ease;
+}
+
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:5rem;
+  color:#ff9ecf;
+  text-shadow:0 0 20px #ff4f9a;
+  margin-bottom:20px;
+  animation: glow 2s infinite alternate;
+}
+
+h2{
+  font-size:2rem;
+  margin-bottom:25px;
+  color:#ffe3ef;
+}
+
+.typing{
+  font-size:1.2rem;
+  line-height:2;
+  min-height:160px;
+}
+
+.btns{
+  margin-top:35px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+button{
+  padding:15px 35px;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(45deg,#ff4f9a,#ff7eb3);
+  color:white;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.4s;
+  box-shadow:0 0 20px rgba(255,105,180,0.5);
+}
+
+button:hover{
+  transform:scale(1.1);
+}
+
+.hidden-message{
+  display:none;
+  margin-top:30px;
+  font-size:1.5rem;
+  animation: fadeIn 2s ease;
+  color:#ffd6ea;
+}
+
+.photo-frame{
+  width:170px;
+  height:170px;
+  margin:25px auto;
+  border-radius:50%;
+  border:5px solid rgba(255,255,255,0.5);
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(255,255,255,0.5);
+}
+
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.heart{
+  position:absolute;
+  color:#ff4f9a;
+  font-size:25px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float{
+  0%{
+    transform:translateY(100vh) scale(0);
+    opacity:0;
+  }
+  50%{
+    opacity:1;
+  }
+  100%{
+    transform:translateY(-10vh) scale(1.5);
+    opacity:0;
+  }
+}
+
+@keyframes glow{
+  from{
+    text-shadow:0 0 10px #ff4f9a;
+  }
+  to{
+    text-shadow:0 0 40px #ff4f9a,0 0 70px #ff7eb3;
+  }
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.music-note{
+  position:absolute;
+  color:white;
+  font-size:20px;
+  animation: notes 5s linear infinite;
+}
+
+@keyframes notes{
+  from{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+  to{
+    transform:translateY(-10vh);
+    opacity:1;
+  }
+}
+
+@media(max-width:768px){
+  h1{
+    font-size:3rem;
+  }
+
+  h2{
+    font-size:1.4rem;
+  }
+
+  .card{
+    padding:25px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+<div class="stars"></div>
+
+<div class="container">
+  <div class="card">
+
+    <h1>Happy Birthday ❤️</h1>
+    <h2>My Beautiful Queen 👑</h2>
+
+    <div class="photo-frame">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop" alt="love">
+    </div>
+
+    <div class="typing" id="typing"></div>
+
+    <div class="btns">
+      <button onclick="showLove()">Open My Heart 💌</button>
+      <button onclick="surprise()">Birthday Surprise 🎁</button>
+    </div>
+
+    <div class="hidden-message" id="message">
+      You are the best thing that ever happened in my life ❤️<br>
+      I promise to always make you smile ✨<br><br>
+      Happy Birthday My Forever Love 💖
+    </div>
+
+  </div>
+</div>
+
+<script>
+const text = `
+Today is not just a birthday...
+Today is the celebration of the most beautiful soul in this universe.
+You are my happiness, my peace, my dream, my heartbeat.
+Every second with you feels magical.
+I wish your smile always stays forever bright like the stars.
+Happy Birthday My Love ❤️
+`;
+
+let i = 0;
+function typingEffect(){
+  if(i < text.length){
+    document.getElementById('typing').innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typingEffect,40);
+  }
+}
+typingEffect();
+
+function showLove(){
+  document.getElementById('message').style.display='block';
+}
+
+function surprise(){
+  alert('🎂 Happy Birthday My Princess ❤️');
+
+  for(let i=0;i<50;i++){
+    createHeart();
+  }
+}
+
+function createHeart(){
+  const heart=document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML='❤';
+  heart.style.left=Math.random()*100+'vw';
+  heart.style.animationDuration=Math.random()*3+3+'s';
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },6000);
+}
+
+setInterval(createHeart,300);
+
+function createStars(){
+  const stars=document.querySelector('.stars');
+
+  for(let i=0;i<150;i++){
+    const star=document.createElement('div');
+    star.classList.add('star');
+
+    star.style.left=Math.random()*100+'%';
+    star.style.top=Math.random()*100+'%';
+    star.style.animationDuration=Math.random()*3+2+'s';
+
+    stars.appendChild(star);
+  }
+}
+
+createStars();
+
+const canvas=document.getElementById('bg');
+const ctx=canvas.getContext('2d');
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<120;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    radius:Math.random()*2,
+    dx:(Math.random()-0.5),
+    dy:(Math.random()-0.5)
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle='rgba(255,255,255,0.7)';
+
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+    ctx.fill();
+
+    p.x+=p.dx;
+    p.y+=p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx*=-1;
+    if(p.y<0||p.y>canvas.height) p.dy*=-1;
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
